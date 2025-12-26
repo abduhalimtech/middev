@@ -10,10 +10,10 @@ final class NormalizeToDateOnly
 {
     /**
      * Rules:
-     * - Return the same date in same timezone but time set to 00:00:00
+     * - Return same date in same timezone, but time set to 00:00:00.
      */
     public static function apply(DateTimeImmutable $dt): DateTimeImmutable
     {
-       return $dt->setTime(0, 0, 0);
+        throw new \RuntimeException('Not implemented');
     }
 }

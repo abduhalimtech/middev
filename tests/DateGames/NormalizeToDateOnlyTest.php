@@ -17,9 +17,26 @@ final class NormalizeToDateOnlyTest extends TestCase
         $tz = new \DateTimeZone('Asia/Tashkent');
         $dt = new DateTimeImmutable('2025-01-15 18:45:10', $tz);
 
-        $out = NormalizeToDateOnly::apply($dt);
+        self::assertSame('2025-01-15 00:00:00', NormalizeToDateOnly::apply($dt)->format('Y-m-d H:i:s'));
+    }
 
+    #[Test]
+    public function it_preserves_timezone(): void
+    {
+        $tz = new \DateTimeZone('UTC');
+        $dt = new DateTimeImmutable('2025-01-15 18:45:10', $tz);
+
+        $out = NormalizeToDateOnly::apply($dt);
+        self::assertSame('UTC', $out->getTimezone()->getName());
         self::assertSame('2025-01-15 00:00:00', $out->format('Y-m-d H:i:s'));
-        self::assertSame('Asia/Tashkent', $out->getTimezone()->getName());
+    }
+
+    #[Test]
+    public function it_handles_already_midnight(): void
+    {
+        $tz = new \DateTimeZone('Asia/Tashkent');
+        $dt = new DateTimeImmutable('2025-01-15 00:00:00', $tz);
+
+        self::assertSame('2025-01-15 00:00:00', NormalizeToDateOnly::apply($dt)->format('Y-m-d H:i:s'));
     }
 }

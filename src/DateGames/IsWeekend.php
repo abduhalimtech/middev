@@ -10,14 +10,10 @@ final class IsWeekend
 {
     /**
      * Rules:
-     * - Return true if Saturday or Sunday.
+     * - Return true if Saturday or Sunday in the given date's timezone.
      */
     public static function check(DateTimeInterface $dt): bool
     {
-        if(in_array($dt->format('N'), [6,7])){
-            return true;
-        }else{
-            return false;
-        }
+        throw new \RuntimeException('Not implemented');
     }
 }

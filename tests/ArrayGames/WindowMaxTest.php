@@ -22,9 +22,15 @@ final class WindowMaxTest extends TestCase
     #[Test]
     public function it_handles_negative_numbers(): void
     {
-        self::assertSame([-1, -1], WindowMax::compute([-1, -2, -3], 2));
+        // Window 1: [-1, -2] -> max -1
+        // Window 2: [-2, -3] -> max -2
+        self::assertSame([-1, -2], WindowMax::compute([-1, -2, -3], 2));
+
         self::assertSame([-5], WindowMax::compute([-5, -10], 2));
-        self::assertSame([-2, 0], WindowMax::compute([-2, 0, -1], 2));
+
+        // Window 1: [-2, 0] -> max 0
+        // Window 2: [0, -1] -> max 0
+        self::assertSame([0, 0], WindowMax::compute([-2, 0, -1], 2));
     }
 
     #[Test]
