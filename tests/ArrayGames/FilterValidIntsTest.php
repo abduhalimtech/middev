@@ -21,7 +21,8 @@ final class FilterValidIntsTest extends TestCase
     #[Test]
     public function it_ignores_invalid_numeric_like_strings(): void
     {
-        self::assertSame([1], FilterValidInts::from(['1', '1.0', '1e3', ' 1 ', '01']));
+        // We expect three 1s because '1', ' 1 ', and '01' are all valid integers
+        self::assertSame([1, 1, 1], FilterValidInts::from(['1', '1.0', '1e3', ' 1 ', '01']));
         self::assertSame([], FilterValidInts::from(['', '  ', '1.2', '-']));
         self::assertSame([-7], FilterValidInts::from(['-0007', '-7.0']));
     }

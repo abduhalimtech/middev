@@ -18,19 +18,16 @@ final class WindowMax
      */
     public static function compute(array $nums, int $k): array
     {
-        $result = [];
-        // $seen = [];
         $count = count($nums);
         if($k <= 0 || $k > $count){
             throw new InvalidArgumentException();
         }
-        
-        for ($i = 0; $i<= $count - $k; $i++){
+
+        for ($i = 0; $i <= $count - $k; $i++){
             $result[] = max(array_slice($nums, $i, $k));
-
         }
-        return $result;
 
+        return $result;
         
     }
 }

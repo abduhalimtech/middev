@@ -15,6 +15,16 @@ final class TakeUntil
      */
     public static function from(array $values): array
     {
-        throw new \RuntimeException('Not implemented');
+        $result = [];
+
+        foreach ($values as $v) {
+            // "Until the first element that is < 0"
+            if ($v < 0) {
+                break; // STOP immediately
+            }
+            $result[] = $v;
+        }
+
+        return $result;
     }
 }

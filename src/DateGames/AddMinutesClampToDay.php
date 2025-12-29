@@ -17,6 +17,11 @@ final class AddMinutesClampToDay
      */
     public static function add(DateTimeImmutable $dt, int $minutes): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        $proposed = $dt->modify(sprintf('%+d minutes', $minutes));
+        if($proposed->format('Y-m-d') !== $dt->format('Y-m-d')){
+            return $dt->setTime(23,59,59);
+
+        }
+        return $proposed;
     }
 }

@@ -18,6 +18,16 @@ final class FrequenciesNormalizedLower
      */
     public static function from(array $values): array
     {
-        throw new \RuntimeException('Not implemented');
+        $result = [];
+        foreach ($values as $v) {
+            if(is_string($v)){
+                $trimmed = strtolower(trim($v));
+                if($trimmed === ''){
+                    continue;
+                }
+                $result[$trimmed] = ($result[$trimmed] ??0) +1;
+            }
+        }
+        return $result;
     }
 }

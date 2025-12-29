@@ -20,6 +20,24 @@ final class ParseKeyValueLine
      */
     public static function parse(string $line): array
     {
-        throw new \RuntimeException('Not implemented');
+        $segments = explode(';', $line);
+        $result = [];
+
+        foreach ($segments as $v) {
+            $pairs = explode('=', $v, 2);
+            if(count($pairs) < 2){
+                continue;
+            }
+            $key = $pairs[0];
+            $value = $pairs[1];
+            $trimKey = strtolower(trim($key));
+            if($trimKey === ''){
+                continue;
+            }
+            $trimValue = trim($value);
+            $result[$trimKey] =$trimValue;
+
+        }
+        return $result;
     }
 }

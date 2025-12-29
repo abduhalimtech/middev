@@ -14,6 +14,6 @@ final class NormalizeToDateOnly
      */
     public static function apply(DateTimeImmutable $dt): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        return $dt->setTime(0,0,0);
     }
 }

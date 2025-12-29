@@ -16,16 +16,15 @@ final class CountByNormalizedKey
     public static function count(array $values): array
     {
         $out = [];
-        foreach ($values as $v ) {
-            if(!is_string($v)){
+        foreach ($values as $v) {
+            if(is_string($v) === false){
                 continue;
             }
-            $key = strtolower(trim($v));
-            if($key === ''){
+            $cr = strtolower(trim($v));
+            if($cr === ''){
                 continue;
             }
-
-            $out[$key] = ($out[$key] ?? 0) + 1;
+            $out[$cr] = ($out[$cr] ?? 0) + 1;
         }
         return $out;
     }

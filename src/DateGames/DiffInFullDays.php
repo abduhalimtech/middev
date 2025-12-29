@@ -17,6 +17,7 @@ final class DiffInFullDays
      */
     public static function between(DateTimeInterface $a, DateTimeInterface $b): int
     {
-        throw new \RuntimeException('Not implemented');
+        $c = $a->diff($b)->days;
+        return $c;
     }
 }

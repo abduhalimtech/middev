@@ -14,6 +14,14 @@ final class CompactNulls
      */
     public static function apply(array $values): array
     {
-        throw new \RuntimeException('Not implemented');
+        $result =[];
+        foreach ($values as $v) {
+            if($v === null){
+                continue;
+            }
+            $result[] = $v;
+        }
+        return $result;
+        // return array_filter($values);
     }
 }

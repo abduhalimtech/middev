@@ -19,6 +19,13 @@ final class FirstDuplicateValue
      */
     public static function find(array $values): mixed
     {
-        throw new \RuntimeException('Not implemented');
+        $seen = [];
+        foreach ($values as $v) {
+            if(in_array($v, $seen, true) === true){
+                return $v;
+            }
+            $seen [] = $v;
+        }
+        throw new InvalidArgumentException();
     }
 }

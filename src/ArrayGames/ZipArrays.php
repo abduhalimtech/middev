@@ -14,6 +14,17 @@ final class ZipArrays
      */
     public static function zip(array $a, array $b): array
     {
-        throw new \RuntimeException('Not implemented');
+        $result = [];
+        
+        // 1. Find the limit (Stop at the shorter length)
+        $limit = min(count($a), count($b));
+
+        // 2. Loop until the limit
+        for ($i = 0; $i < $limit; $i++) {
+            // Create the pair [ItemA, ItemB]
+            $result[] = [$a[$i], $b[$i]];
+        }
+
+        return $result;
     }
 }

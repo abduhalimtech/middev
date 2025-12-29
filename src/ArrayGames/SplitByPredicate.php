@@ -18,6 +18,19 @@ final class SplitByPredicate
      */
     public static function split(array $values): array
     {
-        throw new \RuntimeException('Not implemented');
+        // Initialize buckets
+        $trues = [];
+        $falses = [];
+
+        foreach ($values as $v) {
+            // Predicate: "is even"
+            if ($v % 2 === 0) {
+                $trues[] = $v;
+            } else {
+                $falses[] = $v;
+            }
+        }
+
+        return [$trues, $falses];
     }
 }

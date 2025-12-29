@@ -17,6 +17,29 @@ final class NormalizeUniqueSortedSum
      */
     public static function from(array $values): int
     {
-        throw new \RuntimeException('Not implemented');
+        $result = [];
+        foreach ($values as $v) {
+            if(is_int($v)){
+                $result[]= $v;
+                continue;
+            }
+            if(is_string($v)){
+                $cleanVal = trim($v);
+                if($cleanVal === ''){
+                    $result[] = 0;
+                    continue;
+                }
+                $cleanVal = preg_replace('/^([+-]?)0+(?=\d)/', '$1', $cleanVal);
+                $filtered = filter_var($cleanVal, FILTER_VALIDATE_INT);
+                if($filtered !== false){
+                    $result[] = $filtered;
+                }
+
+            }
+        }
+        
+        $unique = array_unique($result);
+        rsort($unique);
+        return array_sum($unique);
     }
 }

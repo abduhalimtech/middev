@@ -18,6 +18,25 @@ final class ShiftToBusinessDayAtNine
      */
     public static function shift(DateTimeImmutable $dt, array $holidays): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        // 1. Run the loop to find the correct Date
+        while (true) {
+            // Check Weekend
+            if ((int)$dt->format('N') >= 6) {
+                $dt = $dt->modify('+1 day');
+                continue;
+            }
+
+            // Check Holiday
+            if (in_array($dt->format('Y-m-d'), $holidays, true)) {
+                $dt = $dt->modify('+1 day');
+                continue;
+            }
+
+            // Found it. Stop looking.
+            break;
+        }
+
+        // 2. Set the Time (Requirement: Always return at 09:00:00)
+        return $dt->setTime(9, 0, 0);
     }
 }

@@ -15,6 +15,14 @@ final class RunningSum
      */
     public static function from(array $nums): array
     {
-        throw new \RuntimeException('Not implemented');
+        $result = [];
+        $total = 0;
+
+        foreach ($nums as $n) {
+            $total += $n;     // Add current number to snowball
+            $result[] = $total; // Save the snapshot
+        }
+
+        return $result;
     }
 }

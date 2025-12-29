@@ -15,6 +15,6 @@ final class SetTimeToNine
      */
     public static function apply(DateTimeImmutable $dt): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        return $dt->setTime(9, 0, 0);
     }
 }

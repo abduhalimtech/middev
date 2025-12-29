@@ -15,6 +15,17 @@ final class PairSumExists
      */
     public static function check(array $nums, int $target): bool
     {
-        throw new \RuntimeException('Not implemented');
+        if(count($nums) < 2){
+            return false;
+        }
+        $seen = [];
+        foreach ($nums as $n) {
+            $wanted = $target - $n;
+            if(isset($seen[$wanted])){
+                return true;
+            }
+            $seen[$n] = true;
+        }
+        return false;
     }
 }

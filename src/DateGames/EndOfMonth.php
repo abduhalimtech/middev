@@ -16,6 +16,8 @@ final class EndOfMonth
      */
     public static function for(DateTimeImmutable $dt): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        $local = $dt->modify('last day of this month');
+        $set = $local->setTime(23,59,59);
+        return $set;
     }
 }

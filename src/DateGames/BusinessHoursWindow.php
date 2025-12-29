@@ -18,6 +18,17 @@ final class BusinessHoursWindow
      */
     public static function normalize(DateTimeImmutable $dt): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        $start = $dt->setTime(9,0,0);
+        $end = $dt->setTime(18,0,0);
+        if($dt < $start){
+            return $start;
+        }
+
+        if ($dt >= $end) {
+            return $dt->modify('+1 day')->setTime(9,0,0);
+        }
+
+        return $dt;
+
     }
 }

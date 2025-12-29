@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\DateGames;
 
 use DateTimeImmutable;
+use DateTimeZone;
 use InvalidArgumentException;
 
 final class ParseFlexibleDate
@@ -21,11 +22,24 @@ final class ParseFlexibleDate
      */
     public static function normalize(string $input): string
     {
-        throw new \RuntimeException('Not implemented');
+        $dt = self::parse($input);
+        return $dt->format('Y-m-d');
     }
 
     private static function parse(string $input): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        $formats = ['Y-m-d', 'd.m.Y', 'Y/m/d'];
+        foreach ($formats as $f) {
+            $current = DateTimeImmutable::createFromFormat($f, $input, new DateTimeZone('UTC'));
+            if($current ===false){
+                continue;
+            }
+            if($current->format($f) === $input){
+                return $current->setTime(0,0,0);
+            }
+
+        }
+        throw new InvalidArgumentException();
     }
+
 }

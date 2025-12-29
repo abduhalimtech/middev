@@ -16,21 +16,18 @@ final class BetweenMarkers
     {
         // xx[core]yy
         $firstSignPos = strpos($s, $start);
-
         if($firstSignPos === false){
-            return ''; 
+            return '';
         }
-        
         $contentStart = $firstSignPos + strlen($start);
-        $secondSignPos = strpos($s, $end, $contentStart);
+        $secondSignPos = strpos($s, $end);
         
         if($secondSignPos === false){
-            return ''; 
+            return '';
         }
+        $endContent = $secondSignPos - $contentStart;
 
-        $contentEnd = $secondSignPos - $contentStart;
-
-        return substr($s, $contentStart, $contentEnd);
+        return substr($s, $contentStart,$endContent );
         
     }
 }

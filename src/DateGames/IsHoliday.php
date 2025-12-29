@@ -15,6 +15,11 @@ final class IsHoliday
      */
     public static function check(DateTimeInterface $dt, array $holidays): bool
     {
-        throw new \RuntimeException('Not implemented');
+        $local = $dt->format('Y-m-d');
+        if(in_array($local, $holidays)){
+            return true;
+        }
+        return false;
+    
     }
 }

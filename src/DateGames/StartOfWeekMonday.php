@@ -16,6 +16,11 @@ final class StartOfWeekMonday
      */
     public static function from(DateTimeImmutable $dt): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        // 1. Jump to Monday
+        // 'monday this week' is smart: if today is Sunday, it goes back to Monday.
+        $monday = $dt->modify('monday this week');
+
+        // 2. Reset clock to midnight
+        return $monday->setTime(0, 0, 0);
     }
 }

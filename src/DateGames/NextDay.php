@@ -15,6 +15,6 @@ final class NextDay
      */
     public static function from(DateTimeImmutable $dt): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        return $dt->modify('+1 day');
     }
 }

@@ -18,6 +18,17 @@ final class DropEveryNth
      */
     public static function apply(array $values, int $n): array
     {
-        throw new \RuntimeException('Not implemented');
+        if($n <= 0){
+            throw new InvalidArgumentException();
+        }
+        $out =[];
+        foreach($values as $key=>$v){
+            $postion = $key+1;
+            if($postion % $n === 0){
+                continue;
+            }
+            $out[] = $v;
+        }
+        return array_values($out);
     }
 }

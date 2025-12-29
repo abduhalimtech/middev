@@ -17,6 +17,12 @@ final class AddDaysSkippingHolidays
      */
     public static function add(DateTimeImmutable $dt, int $days, array $holidays): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
-    }
+        $current = $dt->modify(sprintf('%+d days', $days));
+        while(in_array($current->format('Y-m-d'), $holidays)){
+
+            $current = $current->modify('+1 days');
+        }
+
+        return $current;
+    }   
 }

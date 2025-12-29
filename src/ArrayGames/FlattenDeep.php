@@ -15,6 +15,15 @@ final class FlattenDeep
      */
     public static function apply(array $values): array
     {
-        throw new \RuntimeException('Not implemented');
+        $result = [];
+        foreach ($values as $v) {
+            if(is_array($v)){
+                $result = array_merge($result, self::apply($v));
+            }else{
+                $result[]=$v;
+            }
+            
+        }
+        return $result;
     }
 }

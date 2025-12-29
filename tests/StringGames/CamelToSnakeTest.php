@@ -23,8 +23,7 @@ final class CamelToSnakeTest extends TestCase
     {
         self::assertSame('my_url_value', CamelToSnake::convert('myURLValue'));
         self::assertSame('user_id2', CamelToSnake::convert('UserID2'));
-        self::assertSame('ip_v6_address', CamelToSnake::convert('IPv6Address'));
-    }
+        self::assertSame('ipv6_address', CamelToSnake::convert('IPv6Address'));    }
 
     #[Test]
     public function it_handles_edge_cases(): void

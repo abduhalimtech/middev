@@ -18,6 +18,19 @@ final class DedupePreserveOrder
      */
     public static function from(array $values): array
     {
-        throw new \RuntimeException('Not implemented');
+        $result = [];
+        foreach ($values as $v) {
+            if(!is_string($v)){
+                continue;
+
+            }   
+            $v = trim($v);
+            if ($v === '') {
+                continue;
+            }
+            $result[] = $v;
+
+        }
+        return array_values(array_unique($result));
     }
 }

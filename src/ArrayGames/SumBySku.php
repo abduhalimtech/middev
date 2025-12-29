@@ -36,9 +36,11 @@ final class SumBySku
                     $sku = strtoupper($value);
                 }
                 if(strcasecmp($key, 'qty') === 0){
-                    if(filter_var($value, FILTER_VALIDATE_INT) !== false){
-
-                        $qty = (int)$value;
+                    $cleanQty = preg_replace('/^([+-]?)0+(?=\d)/', '$1', $value);
+                    $filtered = filter_var($cleanQty, FILTER_VALIDATE_INT);
+    
+                    if ($filtered !== false) {
+                        $qty = $filtered; // Use the validated int directly
                     }
                 }
             }

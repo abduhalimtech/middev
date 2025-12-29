@@ -13,18 +13,17 @@ final class IntStats
      */
     public static function from(array $values): array
     {
-        // TODO
-        // throw new \RuntimeException('Not implemented');
         $result = [];
-        foreach ($values as $value) {
-            if(is_int($value)){
-                $result[] = $value;
+
+        foreach ($values as $v) {
+            if(is_int($v)){
+                $result[] = $v;
                 continue;
             }
-            if(is_string($value)){
-                $cleanVal = trim($value);
+            if(is_string($v)){
+                $cleanVal = trim($v);
+                $cleanVal = preg_replace('/^([+-]?)0+(?=\d)/', '$1', $cleanVal);
                 $filtered = filter_var($cleanVal, FILTER_VALIDATE_INT);
-                
                 if($filtered !== false){
                     $result[] = $filtered;
                 }
@@ -32,13 +31,12 @@ final class IntStats
 
         }
         if(empty($result)){
-            throw new InvalidArgumentException('No valid integers found.');
+            throw new InvalidArgumentException();
         }
-
         return [
             'min' => min($result),
             'max' => max($result),
-            'unique' => count(array_unique($result))
+            'unique' => count(array_unique($result)),
         ];
     }
 }

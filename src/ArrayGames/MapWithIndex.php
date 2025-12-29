@@ -16,6 +16,15 @@ final class MapWithIndex
      */
     public static function apply(array $values): array
     {
-        throw new \RuntimeException('Not implemented');
+        $result = [];
+        if(empty($values)){
+            return $values;
+        }
+        $clean = array_values($values);
+        foreach ($clean as $key => $value) {
+        
+            $result[] = $value+ $key;
+        }
+        return $result;
     }
 }

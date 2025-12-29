@@ -15,6 +15,12 @@ final class IsSameDate
      */
     public static function check(DateTimeInterface $a, DateTimeInterface $b): bool
     {
-        throw new \RuntimeException('Not implemented');
+        $aLocal = $a->format('Y-m-d');
+        $bLocal = $b->format('Y-m-d');
+
+        if($aLocal == $bLocal){
+            return true;
+        }
+        return false;
     }
 }

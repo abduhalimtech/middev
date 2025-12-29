@@ -17,6 +17,23 @@ final class PartitionByType
      */
     public static function split(array $values): array
     {
-        throw new \RuntimeException('Not implemented');
+        $result = [
+            'ints'    => [],
+            'strings' => [],
+            'others'  => []
+        ];
+        
+        foreach ($values as $v) {
+            if(is_int($v)){
+                $result['ints'][] = $v;
+                continue;
+            }
+            if(is_string($v)){
+                $result['strings'][] = $v;
+                continue;
+            }
+            $result['others'][] =$v;
+        }
+        return $result;
     }
 }

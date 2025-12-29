@@ -14,6 +14,19 @@ final class CollapseRepeats
      */
     public static function apply(string $s): string
     {
-        throw new \RuntimeException('Not implemented');
+        if($s === ''){
+            return '';
+        }
+
+        $chars = str_split($s);
+        $lastChar = null;
+        $result = [];
+        foreach ($chars as $char) {
+            if($char !== $lastChar){
+                $result[] = $char;
+                $lastChar = $char; 
+            }
+        }
+        return implode('', $result);
     }
 }

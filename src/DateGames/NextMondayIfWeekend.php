@@ -17,6 +17,14 @@ final class NextMondayIfWeekend
      */
     public static function apply(DateTimeImmutable $dt): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        $local = $dt->format('N');
+
+        if($local == 6){
+            return $dt->modify('+2 days');
+        }
+        if($local == 7){
+            return $dt->modify('+1 day');
+        }
+        return $dt;
     }
 }

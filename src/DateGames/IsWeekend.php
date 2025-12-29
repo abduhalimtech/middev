@@ -14,6 +14,11 @@ final class IsWeekend
      */
     public static function check(DateTimeInterface $dt): bool
     {
-        throw new \RuntimeException('Not implemented');
+        $local = $dt->format('N');
+        
+        if($local >= 6){
+            return true;
+        }
+        return false;
     }
 }

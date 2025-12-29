@@ -18,6 +18,21 @@ final class GroupByFirstChar
      */
     public static function group(array $values): array
     {
-        throw new \RuntimeException('Not implemented');
+        if(empty($values)){
+            return $values;
+        }
+
+        $result = [];
+        foreach ($values as $v) {
+            if(is_string($v)){
+                $t = trim($v);
+                if($t === ''){
+                    continue;
+                }
+                $fCh = strtolower($t[0]);
+                $result[$fCh][] = $t;
+            }
+        }
+        return $result;
     }
 }

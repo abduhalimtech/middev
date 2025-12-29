@@ -19,6 +19,11 @@ final class NearestPastQuarterHour
      */
     public static function round(DateTimeImmutable $dt): DateTimeImmutable
     {
-        throw new \RuntimeException('Not implemented');
+        $minute =(int)$dt->format('i');
+        $block = $minute % 15;
+        $newMinute = $minute - $block;
+
+        return $dt->setTime((int)$dt->format('H'), $newMinute, 0);
+    
     }
 }
